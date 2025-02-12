@@ -1,3 +1,5 @@
+console.log('\n---- 02-object-interfaces ----\n');
+
 interface Character {
   name: string;
   hp: number;
