@@ -1,23 +1,29 @@
 console.log('\n---- 08-classes ----\n');
 
-
+// Clases
 export class Person {
   constructor(public name: string, private address: string = 'Unknown') {
   }
 }
 
-export class Superhero extends Person {
-  constructor(realName: string, address: string, private alterEgo: string, private age: number) {
-    super(realName, address);
+// Composition
+export class Superhero {
+
+  constructor(private person: Person, private alterEgo: string, private age: number) {
+
   }
 }
 
-const ironman = new Person('Tony Stark', 'New York');
-const hulk = new Person('Bruce Banner');
+const tony = new Person('Tony Stark', 'New York');
+const bruce = new Person('Bruce Banner');
+console.log({tony, bruce});
 
-console.log({ironman, hulk});
 
-const spiderman = new Superhero('Peter Parker', 'New York', 'Spiderman', 17);
-const scarletWitch = new Superhero('Wanda Maximoff', 'Sokovia', 'Scarlet Witch', 29);
+// usando composition
+const peterParker = new Person('Peter Parker', 'New York');
+const spiderman = new Superhero(peterParker, 'Spiderman', 17);
+
+const wandaMaximoff = new Person('Wanda Maximoff', 'Sokovia');
+const scarletWitch = new Superhero(wandaMaximoff, 'Scarlet Witch', 29);
 
 console.log({spiderman, scarletWitch});
