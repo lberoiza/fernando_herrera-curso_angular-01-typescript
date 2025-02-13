@@ -21,15 +21,14 @@ interface TaxConfigurationOptions {
   products: Product[];
 }
 
+// opcion 1
+// function calculateTax({tax, products}: TaxConfigurationOptions): [number, number] {
 
+// opcion 2: se escogió esta opcion para priorizar la legibilidad del código
 function calculateTax(options: TaxConfigurationOptions): [number, number] {
-  let total = 0;
-
-  options.products.forEach(({price}) => {
-    total += price;
-  });
-
-  return [total, total * options.tax];
+  const {tax, products} = options;
+  const total = products.reduce((acc, {price}) => acc + price, 0);
+  return [total, total * tax];
 }
 
 
@@ -37,5 +36,5 @@ function calculateTax(options: TaxConfigurationOptions): [number, number] {
 const shoppingCart: Product[] = [phone, tablet];
 const tax = 0.16;
 
-const result = calculateTax({tax, products: shoppingCart});
-console.log(`Total ${result[0]}, Tax ${result[1]}`); // Total 350, Tax 56
+const [total, taxResult] = calculateTax({tax, products: shoppingCart});
+console.log(`Total ${total}, Tax ${taxResult}`); // Total 350, Tax 56
